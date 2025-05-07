@@ -290,6 +290,7 @@ MonoBehaviour:
   hintText: {fileID: 1686017941}
   hintImage: {fileID: 544589052}
   scoreText: {fileID: 2030712116}
+  levelNumber: 3
   feedbackCanvas: {fileID: 74131598}
   feedbackText: {fileID: 664402353}
 --- !u!1 &519420028

@@ -30,12 +30,19 @@ public class ResultsManager : MonoBehaviour
     }
 
     public void BackToMenu() => SceneManager.LoadScene("MainMenu");
-    public void ReplayLevel() => SceneManager.LoadScene(PlayerPrefs.GetInt("LastLevel", 1));
+    public void ReplayLevel()
+    {
+        int level = PlayerPrefs.GetInt("LastLevel", 1);
+        string sceneName = "Level" + level + "Scene";
+        SceneManager.LoadScene(sceneName);
+    }
 
     public void NextLevel()
     {
         int next = PlayerPrefs.GetInt("LastLevel", 1) + 1;
-        // Если есть сцена с таким именем
-        SceneManager.LoadScene("Level" + next + "Scene");
+        if (next <= 3)
+        {
+            SceneManager.LoadScene("Level" + next + "Scene");
+        }
     }
 }
