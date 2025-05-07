@@ -6,11 +6,15 @@ public class WordGameManager : MonoBehaviour
 {
     public List<WordQuestion> wordQuestions;
     public GameObject letterButtonPrefab;
+    public GameObject slotPrefab;
     public Transform lettersContainer;
     public Transform slotsContainer;
     public Text hintText;
     public Image hintImage;
     public Text scoreText;
+
+    private List<LetterButton> usedLetterButtons = new List<LetterButton>();
+    private List<GameObject> slotObjects = new List<GameObject>(); 
 
     private string currentWord;
     private List<Text> slotTexts = new List<Text>();
@@ -36,23 +40,40 @@ public class WordGameManager : MonoBehaviour
 
         for (int i = 0; i < currentWord.Length; i++)
         {
-            GameObject slot = new GameObject("Slot");
-            slot.transform.SetParent(slotsContainer);
-
-            // Добавляем RectTransform
-            RectTransform rt = slot.AddComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(80, 80); // Размер слота
-
-            // Настраиваем Text
-            Text text = slot.AddComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("Arial");
-            text.fontSize = 40;
-            text.color = Color.black;
-            text.alignment = TextAnchor.MiddleCenter;
-            text.text = ""; // Начальное значение
-
+            GameObject slot = Instantiate(slotPrefab, slotsContainer);
+            Text text = slot.GetComponentInChildren<Text>();
+            text.text = "";
             slotTexts.Add(text);
+
+            // Text text = slot.AddComponent<Text>();
+            // text.fontSize = 40;
+            // text.color = Color.black;
+            // text.alignment = TextAnchor.MiddleCenter;
+            // text.text = "";
+
+            // slotTexts.Add(text);
+            // slotObjects.Add(slot);
+
+            // Добавим EventTrigger для возвращения буквы по нажатию
+            Button slotButton = slot.GetComponent<Button>();
+            int index = i;
+            slotButton.onClick.AddListener(() => OnSlotClicked(index));
+
         }
+
+        void OnSlotClicked(int index)
+        {
+            if (slotTexts[index].text != "")
+            {
+                char letter = slotTexts[index].text[0];
+                GameObject letterObj = Instantiate(letterButtonPrefab, lettersContainer);
+                letterObj.GetComponent<LetterButton>().Init(this, letter);
+                slotTexts[index].text = "";
+
+                currentSlotIndex = Mathf.Max(0, currentSlotIndex - 1);
+            }
+        }
+
 
         char[] shuffled = ShuffleLetters(currentWord);
         foreach (char c in shuffled)
@@ -80,14 +101,63 @@ public class WordGameManager : MonoBehaviour
         if (currentSlotIndex < slotTexts.Count)
         {
             slotTexts[currentSlotIndex].text = letter.ToString();
+            usedLetterButtons.Add(button);
+            button.gameObject.SetActive(false); 
             currentSlotIndex++;
-
-            if (currentSlotIndex == slotTexts.Count)
-            {
-                CheckSolution();
-            }
         }
     }
+
+    public void RemoveLetterFromSlot(int index)
+    {
+        if (index < usedLetterButtons.Count && slotTexts[index].text != "")
+        {
+            slotTexts[index].text = "";
+            LetterButton button = usedLetterButtons[index];
+            button.gameObject.SetActive(true); 
+            usedLetterButtons[index] = null;
+            currentSlotIndex = index; 
+        }
+    }
+
+    public void CheckAnswer()
+    {
+        string assembled = "";
+        foreach (Text slotText in slotTexts)
+            assembled += slotText.text;
+
+        bool isCorrect = assembled.ToUpper() == currentWord.ToUpper();
+        if (isCorrect)
+        {
+            score += 100;
+            UpdateScore();
+            ShowFeedback("Correct!", Color.green);
+            Invoke("NextQuestion", 1f);
+        }
+        else
+        {
+            ShowFeedback("Wrong!", Color.red);
+            Invoke("ResetLetters", 1f);
+        }
+    }
+
+    public GameObject feedbackCanvas;
+    public Text feedbackText;
+
+    void ShowFeedback(string text, Color color)
+    {
+        feedbackText.text = text;
+        feedbackText.color = color;
+        feedbackCanvas.SetActive(true);
+        Invoke("HideFeedback", 1f);
+    }
+
+    public void HideFeedback()
+    {
+        feedbackCanvas.SetActive(false);
+    }
+
+
+
 
     void CheckSolution()
     {
@@ -105,7 +175,7 @@ public class WordGameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Неверно! Правильный ответ: " + currentWord);
+            Debug.Log("Incorrect! The right one: " + currentWord);
             Invoke("ResetLetters", 2f);
         }
     }
@@ -124,7 +194,7 @@ public class WordGameManager : MonoBehaviour
         }
     }
 
-    void UpdateScore() => scoreText.text = "Счет: " + score;
+    void UpdateScore() => scoreText.text = "Score: " + score;
 
     void ClearOldLetters()
     {
@@ -150,7 +220,7 @@ public class WordGameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Игра завершена!");
+            Debug.Log("Game over!");
         }
     }
 }

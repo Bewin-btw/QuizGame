@@ -254,8 +254,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wordQuestions:
   - word: BANKAI
-    hint: "\u0412\u044B\u0441\u0448\u0430\u044F \u0444\u043E\u0440\u043C\u0430 \u0434\u0437\u0430\u043D\u043F\u0430\u043A\u0442\u043E"
-    hintImage: {fileID: 0}
+    hint: The highest form of Zanpakuto
+    hintImage: {fileID: 3661953746440098126, guid: c308020b1653c4561a46af0b72d5314e, type: 3}
+  - word: ZANGETSU
+    hint: Ichigo Kurosaki's Zanpakuto
+    hintImage: {fileID: 5807810277839214837, guid: 2a418fae836664fbd9fd9ca1f458397d, type: 3}
+  - word: SHIKAI
+    hint: The initial release of a Zanpakuto
+    hintImage: {fileID: -502802096318604363, guid: d8920a157dda74b7ea215ba05c08ebf4, type: 3}
+  - word: HOLLOW
+    hint: Corrupted spirits hunted by Soul Reapers
+    hintImage: {fileID: 8510475797712561763, guid: 8e3aee07ad04941ddb6f9100036e0059, type: 3}
+  - word: ESPADA
+    hint: "Aizen\u2019s elite Arrancar warriors"
+    hintImage: {fileID: 4925767980902887381, guid: 7b2facdf30e4442e3a0a8135dc025676, type: 3}
+  - word: QUINCY
+    hint: Spirit archers who eradicate Hollows
+    hintImage: {fileID: 1977947155878109529, guid: 6c45ace712c744940a462b2a5450e91d, type: 3}
+  - word: GOTEI13
+    hint: The 13 Court Guard Squads of the Soul Society
+    hintImage: {fileID: -3246113086591515925, guid: 6b42e4b1b018e466792847ac145620a3, type: 3}
+  - word: HYORINMARU
+    hint: "Toshiro Hitsugaya\u2019s ice-type Zanpakuto"
+    hintImage: {fileID: 3208660458084193207, guid: 45f9b6f67f9084936aebd0296d63be1a, type: 3}
+  - word: HOGYOKU
+    hint: A forbidden artifact created by Aizen
+    hintImage: {fileID: -8484488204387587238, guid: aa0bb5b66660143a79a73f6df54cb9dd, type: 3}
+  - word: CERO
+    hint: A destructive energy beam used by Hollows
+    hintImage: {fileID: -2274381145000147278, guid: 8418776dad440473094e76f28b101068, type: 3}
   letterButtonPrefab: {fileID: 8269907696163326579, guid: f1f54aaf13a2a4291b04fabb9b87f575, type: 3}
   lettersContainer: {fileID: 1605924199}
   slotsContainer: {fileID: 2081816574}
@@ -433,8 +460,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 534.8596, y: 412.18}
-  m_SizeDelta: {x: 446.6063, y: 259.6466}
+  m_AnchoredPosition: {x: 541.4356, y: -94}
+  m_SizeDelta: {x: 758.4, y: 470.5411}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &544589051
 CanvasRenderer:
@@ -1352,7 +1379,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
+  m_CellSize: {x: 100, y: 100}
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -1425,7 +1452,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 90
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 90
     m_Alignment: 4
@@ -1701,7 +1728,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 80}
+  m_CellSize: {x: 100, y: 100}
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

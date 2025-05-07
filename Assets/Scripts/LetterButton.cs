@@ -23,6 +23,6 @@ public class LetterButton : MonoBehaviour
     private void OnClick()
     {
         gameManager.ProcessLetterClick(letter, this);
-        button.interactable = false; // Делаем кнопку неактивной после нажатия
+        button.interactable = false; 
     }
 }
