@@ -190,8 +190,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1238920808175504183, guid: a977eb2fed78e40c5bf254dfbae58f05, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -725,15 +725,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8207547, g: 0.39101994, b: 0.39101994, a: 0.392}
+  m_Color: {r: 0.6981132, g: 0.62237453, b: 0.62237453, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -1963766812474662533, guid: 6895fae39af154fcc9c063836cbebd23, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -910,8 +910,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 87370899c17d54ab784fd417c4d6e789, type: 3}
-  m_Resource: {fileID: 8300000, guid: 87370899c17d54ab784fd417c4d6e789, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4704301da6b0d462291057e094f5586d, type: 3}
+  m_Resource: {fileID: 8300000, guid: 4704301da6b0d462291057e094f5586d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.142
   m_Pitch: 1
@@ -1308,8 +1308,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3, y: 70.69118}
-  m_SizeDelta: {x: -45.4453, y: 0}
+  m_AnchoredPosition: {x: -386.02, y: 70.69116}
+  m_SizeDelta: {x: -823.49, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1605924201
 MonoBehaviour:
@@ -1657,8 +1657,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.64209, y: -262.87}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -387.56, y: -262.87}
+  m_SizeDelta: {x: -820.4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2081816576
 MonoBehaviour:
