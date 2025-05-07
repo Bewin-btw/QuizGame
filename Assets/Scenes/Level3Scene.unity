@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &74131599
 RectTransform:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74131598}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.26415092, g: 0.17568529, b: 0.17568529, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -284,11 +284,14 @@ MonoBehaviour:
     hint: A destructive energy beam used by Hollows
     hintImage: {fileID: -2274381145000147278, guid: 8418776dad440473094e76f28b101068, type: 3}
   letterButtonPrefab: {fileID: 8269907696163326579, guid: f1f54aaf13a2a4291b04fabb9b87f575, type: 3}
+  slotPrefab: {fileID: 8269907696163326579, guid: da4b3d64faee4419c860c27ae2a9f0da, type: 3}
   lettersContainer: {fileID: 1605924199}
   slotsContainer: {fileID: 2081816574}
   hintText: {fileID: 1686017941}
   hintImage: {fileID: 544589052}
   scoreText: {fileID: 2030712116}
+  feedbackCanvas: {fileID: 74131598}
+  feedbackText: {fileID: 664402353}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.23113209, b: 0.23113209, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -831,7 +834,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 146562425}
         m_TargetAssemblyTypeName: WordGameManager, Assembly-CSharp
-        m_MethodName: CheckSolution
+        m_MethodName: CheckAnswer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

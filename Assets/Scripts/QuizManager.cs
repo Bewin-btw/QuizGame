@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class QuizManager : MonoBehaviour
 {
-    public QuestionAndAnswers[] allQuestions; 
-    private List<QuestionAndAnswers> questions; 
+    public QuestionAndAnswers[] allQuestions;
+    private List<QuestionAndAnswers> questions;
 
     public GameObject[] options;
     public Text QuestionTxt;
@@ -16,7 +17,7 @@ public class QuizManager : MonoBehaviour
     public CanvasGroup feedbackCanvasGroup;
     public Text feedbackText;
 
-    public int currentLevel = 1; 
+    public int currentLevel = 1;
     private int currentQuestionIndex = 0;
     private int score = 0;
 
@@ -32,9 +33,20 @@ public class QuizManager : MonoBehaviour
     {
         if (currentQuestionIndex >= questions.Count)
         {
-            feedbackText.text = "Level Complete! Final Score: " + score;
+            // Сохраняем в PlayerPrefs
+            PlayerPrefs.SetInt("CorrectAnswers", score / 100);           // т.к. +100 за correct
+            PlayerPrefs.SetInt("WrongAnswers", questions.Count - (score / 100));
+            PlayerPrefs.SetInt("LastScore", score);
+            PlayerPrefs.SetInt("LastLevel", currentLevel);
+
+            SceneManager.LoadScene("ResultsScene");
             return;
         }
+        // if (currentQuestionIndex >= questions.Count)
+        // {
+        //     feedbackText.text = "Level Complete! Final Score: " + score;
+        //     return;
+        // }
 
         QuestionAndAnswers question = questions[currentQuestionIndex];
         QuestionTxt.text = question.Question;

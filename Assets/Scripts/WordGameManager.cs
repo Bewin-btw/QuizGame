@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class WordGameManager : MonoBehaviour
 {
@@ -12,15 +13,18 @@ public class WordGameManager : MonoBehaviour
     public Text hintText;
     public Image hintImage;
     public Text scoreText;
+    public int levelNumber;
 
     private List<LetterButton> usedLetterButtons = new List<LetterButton>();
-    private List<GameObject> slotObjects = new List<GameObject>(); 
+    private List<GameObject> slotObjects = new List<GameObject>();
 
     private string currentWord;
     private List<Text> slotTexts = new List<Text>();
     private int currentSlotIndex = 0;
     private int currentQuestionIndex = 0;
     private int score = 0;
+    private int correctCount = 0;
+    private int wrongCount = 0;
 
     void Start()
     {
@@ -102,7 +106,7 @@ public class WordGameManager : MonoBehaviour
         {
             slotTexts[currentSlotIndex].text = letter.ToString();
             usedLetterButtons.Add(button);
-            button.gameObject.SetActive(false); 
+            button.gameObject.SetActive(false);
             currentSlotIndex++;
         }
     }
@@ -113,9 +117,9 @@ public class WordGameManager : MonoBehaviour
         {
             slotTexts[index].text = "";
             LetterButton button = usedLetterButtons[index];
-            button.gameObject.SetActive(true); 
+            button.gameObject.SetActive(true);
             usedLetterButtons[index] = null;
-            currentSlotIndex = index; 
+            currentSlotIndex = index;
         }
     }
 
@@ -129,14 +133,34 @@ public class WordGameManager : MonoBehaviour
         if (isCorrect)
         {
             score += 100;
+            correctCount++;
             UpdateScore();
             ShowFeedback("Correct!", Color.green);
-            Invoke("NextQuestion", 1f);
         }
         else
         {
+            wrongCount++;
             ShowFeedback("Wrong!", Color.red);
-            Invoke("ResetLetters", 1f);
+        }
+
+        Invoke(nameof(AdvanceOrFinish), 1f);
+    }
+
+    private void AdvanceOrFinish()
+    {
+        if (currentQuestionIndex < wordQuestions.Count - 1)
+        {
+            currentQuestionIndex++;
+            LoadQuestion();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("LastLevel", levelNumber);
+            PlayerPrefs.SetInt("CorrectAnswers", correctCount);
+            PlayerPrefs.SetInt("WrongAnswers", wrongCount);
+            PlayerPrefs.SetInt("LastScore", score);
+
+            SceneManager.LoadScene("ResultsScene");
         }
     }
 
@@ -159,26 +183,26 @@ public class WordGameManager : MonoBehaviour
 
 
 
-    void CheckSolution()
-    {
-        string assembled = "";
-        foreach (Text slotText in slotTexts)
-        {
-            assembled += slotText.text;
-        }
+    // void CheckSolution()
+    // {
+    //     string assembled = "";
+    //     foreach (Text slotText in slotTexts)
+    //     {
+    //         assembled += slotText.text;
+    //     }
 
-        if (assembled.ToUpper() == currentWord.ToUpper())
-        {
-            score += 100;
-            UpdateScore();
-            NextQuestion();
-        }
-        else
-        {
-            Debug.Log("Incorrect! The right one: " + currentWord);
-            Invoke("ResetLetters", 2f);
-        }
-    }
+    //     if (assembled.ToUpper() == currentWord.ToUpper())
+    //     {
+    //         score += 100;
+    //         UpdateScore();
+    //         NextQuestion();
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Incorrect! The right one: " + currentWord);
+    //         Invoke("ResetLetters", 2f);
+    //     }
+    // }
 
     void ResetLetters()
     {
@@ -211,16 +235,16 @@ public class WordGameManager : MonoBehaviour
         slotTexts.Clear();
     }
 
-    void NextQuestion()
-    {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < wordQuestions.Count)
-        {
-            LoadQuestion();
-        }
-        else
-        {
-            Debug.Log("Game over!");
-        }
-    }
+    // void NextQuestion()
+    // {
+    //     currentQuestionIndex++;
+    //     if (currentQuestionIndex < wordQuestions.Count)
+    //     {
+    //         LoadQuestion();
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Game over!");
+    //     }
+    // }
 }
